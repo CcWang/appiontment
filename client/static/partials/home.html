@@ -1,0 +1,24 @@
+<div  ng-controller = 'HomeController'>
+  <h1>Doctor's Appointments</h1>
+  <hr>
+  Search <input type="text" ng-model='filter_App'>
+  <p ng-bind='err'></p>
+  <table>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Patient</th>
+        <th>Complain</th>
+        <!-- <th>Actions</th> -->
+      </tr>
+      <tr ng-repeat='app in apps | orderBy: "_id" | filter: filter_App'>
+        <td>{{app.date.slice(0,10)}}</td>
+        <td>{{app.time}}</td>
+        <td>{{app.patient}}</td>
+        <td>{{app.complain}}<button ng-if='patient.user == app.patient' ng-click='remove(app)'> Cancel Appointment</button></td>
+      </tr>
+    </table>
+    <hr>
+  <a href="#/new_appointment"><button>Add New Appointment</button></a>
+
+</div>
