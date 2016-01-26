@@ -1,6 +1,6 @@
 <div ng-controller = 'AppController'>
   <h1>New Appointment</h1>
-  <p ng-bind='message'></p>
+  <p ng-if='message != null 'ng-bind='message'></p>
  Date:
  <input type="date" ng-model='new_app.date' min="2016-01-01">
  Time: 
@@ -9,5 +9,5 @@
  <textarea ng-model='new_app.complain'></textarea>
  <button ng-click='cancel()'>Cancel</button>
  <button type="submit" ng-click='create()'>Add Appointment</button>
- <p ng-bind='message.message' style="color: green"></p>
+ <p ng-bind='success.success' style="color: green"></p>
 </div>

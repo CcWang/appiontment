@@ -29,7 +29,7 @@ module.exports = {
       if (err) {
         console.log('db wrong');
       }else{
-        res.json({message:'Successfully submit a new appointment!'})
+        res.json({success:'Successfully submit a new appointment!'})
       };
     })
   },

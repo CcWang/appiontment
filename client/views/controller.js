@@ -1,22 +1,24 @@
 myApp.controller('HomeController', function ($scope, MainFactory) {
   var user;
   $scope.now = new Date();
-  console.log($scope.now);
+  // console.log($scope.now);
+  var get_apps = function (data){
+    $scope.apps = data;
+  }
   $scope.login = function(){
     user = prompt('Please enter your name');
     $scope.user = {'user':user};
     MainFactory.user = $scope.user;
+    $scope.patient = MainFactory.user;
   };
   $scope.logout = function(){
-    $scope.user = {};
+    $scope.user = null;
     MainFactory.user = $scope.user;
+    $scope.patient = MainFactory.user;
   };
-  if (MainFactory.user == undefined) {
+  if (!MainFactory.user) {
     $scope.login();
   };
-  var get_apps = function (data){
-    $scope.apps = data;
-  }
   MainFactory.index(get_apps);
   $scope.patient = MainFactory.user;
   $scope.remove = function (data){
@@ -105,13 +107,14 @@ myApp.controller('AppController', function ($scope, MainFactory, AppFactory){
           $scope.thatDayApp = data;
           if($scope.thatDayApp <3 ){
             //create function
+            $scope.message = '';
             AppFactory.create(
               $scope.new_app,
-              function(data){$scope.message = data}
+              function(data){$scope.success= data}
             );
           //end of create function
           }else{
-             $scope.message = 'No more available time on'+ $scope.new_app.date+'Please pick another date';
+             $scope.message = 'No more available time on that date. Please pick another date';
           };
         }
       ); 
