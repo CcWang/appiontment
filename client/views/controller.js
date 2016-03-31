@@ -10,11 +10,13 @@ myApp.controller('HomeController', function ($scope, MainFactory) {
     $scope.user = {'user':user};
     MainFactory.user = $scope.user;
     $scope.patient = MainFactory.user;
+
   };
   $scope.logout = function(){
     $scope.user = null;
     MainFactory.user = $scope.user;
     $scope.patient = MainFactory.user;
+    $scope.patient.user = null;
   };
   if (!MainFactory.user) {
     $scope.login();
